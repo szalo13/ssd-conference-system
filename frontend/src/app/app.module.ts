@@ -7,13 +7,13 @@ import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { LoginComponent } from '../components/login/login';
+import { LoginFormComponent } from '../components/login-form/login-form';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    LoginComponent
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,

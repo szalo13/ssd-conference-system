@@ -1,31 +1,34 @@
 import { Component } from '@angular/core';
-import { Angular2TokenService } from "angular2-token";
+import { Angular2TokenService, SignInData } from "angular2-token";
 import { Http } from '@angular/http';
 import { environment } from "../../app/environments/environment";
 
 /**
- * Generated class for the LoginComponent component.
+ * Generated class for the LoginFormComponent component.
  *
  * See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
  * for more info on Angular Components.
  */
 @Component({
-  selector: 'login',
-  templateUrl: 'login.html',
+  selector: 'login-form',
+  templateUrl: 'login-form.html',
   providers: [ Angular2TokenService ]
 })
-export class LoginComponent {
+export class LoginFormComponent {
 
-  text: string;
-  title = 'app works!';
+  signInData: SignInData = <SignInData>{};
+  email: SignInData;
+  password: SignInData;
 
   constructor(
     private authToken: Angular2TokenService,
     private http: Http) {
-    console.log('Hello LoginComponent Component');
-    this.authToken.init(environment.token_auth_config);
 
-    this.authToken.signIn({email: "user@example.com", password: "monkey67"}).subscribe(
+    this.authToken.init(environment.token_auth_config);
+  }
+
+  private signIn() {
+    this.authToken.signIn({email: this.signInData.email, password: this.signInData.password}).subscribe(
       res => {
 
         console.log('auth response:', res);
@@ -37,7 +40,5 @@ export class LoginComponent {
         console.error('auth error:', err);
       }
   )
-    this.text = 'Hello World';
   }
-
 }
