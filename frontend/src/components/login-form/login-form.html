@@ -12,8 +12,8 @@
       <ion-input type="password" [(ngModel)]="signInData.password" formControlName="password" ></ion-input>
     </ion-item>
 
-    <button ion-button large
-    (click)="signIn()"
+    <button ion-button full
+    (click)="onSignInSubmit()"
     [disabled]="!form.valid">Large</button>
 
   </form>
