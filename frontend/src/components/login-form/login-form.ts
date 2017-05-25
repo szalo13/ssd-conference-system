@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Angular2TokenService, SignInData } from "angular2-token";
 import { Http } from '@angular/http';
 import { environment } from "../../app/environments/environment";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 /**
  * Generated class for the LoginFormComponent component.
@@ -17,18 +18,25 @@ import { environment } from "../../app/environments/environment";
 export class LoginFormComponent {
 
   signInData: SignInData = <SignInData>{};
-  email: SignInData;
-  password: SignInData;
+  form: FormGroup;
 
   constructor(
     private authToken: Angular2TokenService,
-    private http: Http) {
+    private http: Http,
+    @Inject(FormBuilder) fb: FormBuilder) {
 
-    this.authToken.init(environment.token_auth_config);
+      this.form = fb.group({
+        email: ['', Validators.email],
+        password: ['', [Validators.minLength(5), Validators.required]]
+      });
+      this.authToken.init(environment.token_auth_config);
   }
 
   private signIn() {
-    this.authToken.signIn({email: this.signInData.email, password: this.signInData.password}).subscribe(
+    this.authToken.signIn({
+      email: this.signInData.email,
+      password: this.signInData.password
+    }).subscribe(
       res => {
 
         console.log('auth response:', res);

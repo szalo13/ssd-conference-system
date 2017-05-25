@@ -1,15 +1,21 @@
 <ion-list>
 
-  <ion-item>
-    <ion-label fixed>Email</ion-label>
-    <ion-input type="text" value="" [(ngModel)]="signInData.email"></ion-input>
-  </ion-item>
+  <form [formGroup]="form">
 
-  <ion-item>
-    <ion-label fixed>Password</ion-label>
-    <ion-input type="password" [(ngModel)]="signInData.password"></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-label fixed>Email</ion-label>
+      <ion-input type="text" value="" [(ngModel)]="signInData.email" formControlName="email"></ion-input>
+    </ion-item>
 
-  <button ion-button large (click)="signIn()">Large</button>
+    <ion-item>
+      <ion-label fixed>Password</ion-label>
+      <ion-input type="password" [(ngModel)]="signInData.password" formControlName="password" ></ion-input>
+    </ion-item>
+
+    <button ion-button large
+    (click)="signIn()"
+    [disabled]="!form.valid">Large</button>
+
+  </form>
 
 </ion-list>
