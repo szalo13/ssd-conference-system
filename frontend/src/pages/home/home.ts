@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { LoginComponent } from '../../components/login/login';
-import { LoginFormComponent } from '../../components/login-form/login-form';
+import { RegisterFormComponent } from '../../components/register-form/register-form';
 
 @Component({
   selector: 'page-home',

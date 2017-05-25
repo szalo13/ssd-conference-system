@@ -11,17 +11,18 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
  * for more info on Angular Components.
  */
 @Component({
-  selector: 'login-form',
-  templateUrl: 'login-form.html',
+  selector: 'register-form',
+  templateUrl: 'register-form.html',
   providers: [ Angular2TokenService ]
 })
-export class LoginFormComponent {
+export class RegisterFormComponent {
 
   @Output() onFormResult = new EventEmitter<any>();
-  form: FormGroup;
-  signInData = {
+  signUpform: FormGroup;
+  signUpData = {
     email: '',
-    password: ''
+    password: '',
+    passwordConfirmation: ''
   }
 
   constructor(
@@ -29,25 +30,27 @@ export class LoginFormComponent {
     private http: Http,
     @Inject(FormBuilder) fb: FormBuilder) {
 
-      this.form = fb.group({
+      this.signUpform = fb.group({
         email: ['', Validators.email],
-        password: ['', [Validators.minLength(5), Validators.required]]
+        password: ['', [Validators.minLength(8), Validators.required]],
+        passwordConfirmation: ['', [Validators.minLength(8), Validators.required]]
       });
+
       this.authToken.init(environment.token_auth_config);
   }
 
-  private onSignInSubmit() {
-    this.authToken.signIn(this.signInData).subscribe(
+  private onSignUpSubmit() {
+    this.authToken.registerAccount(this.signUpData).subscribe(
       res => {
         if(res.status == 200) {
           console.log("logged in");
-          this.onFormResult.emit({signedIn: true, res});
+          this.onFormResult.emit({signedUp: true, res});
         }
       },
 
       err => {
-        console.error('auth error:', err);
-        this.onFormResult.emit({signedIn: false, err});
+        console.error('auth error:', err)
+        this.onFormResult.emit({signedUp: true, err});
       }
   )
   }

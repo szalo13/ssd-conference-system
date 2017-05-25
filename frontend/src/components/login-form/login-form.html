@@ -4,17 +4,21 @@
 
     <ion-item>
       <ion-label fixed>Email</ion-label>
-      <ion-input type="text" value="" [(ngModel)]="signInData.email" formControlName="email"></ion-input>
+      <ion-input type="text" value=""
+      [(ngModel)]="signInData.email"
+      formControlName="email"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label fixed>Password</ion-label>
-      <ion-input type="password" [(ngModel)]="signInData.password" formControlName="password" ></ion-input>
+      <ion-input type="password"
+      [(ngModel)]="signInData.password"
+      formControlName="password" ></ion-input>
     </ion-item>
 
     <button ion-button full
     (click)="onSignInSubmit()"
-    [disabled]="!form.valid">Large</button>
+    [disabled]="!form.valid">Sign In</button>
 
   </form>
 

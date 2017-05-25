@@ -1,0 +1,36 @@
+<ion-list>
+
+  <form [formGroup]="signUpform">
+
+    <ion-item>
+      <ion-label fixed>Email</ion-label>
+      <ion-input type="text" value=""
+      [(ngModel)]="signUpData.email"
+      formControlName="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label fixed>Password</ion-label>
+      <ion-input type="password"
+      [(ngModel)]="signUpData.password"
+      formControlName="password" ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label fixed>Repeat password</ion-label>
+      <ion-input type="password"
+      [(ngModel)]="signUpData.passwordConfirmation"
+      formControlName="passwordConfirmation" ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <p *ngIf="signUpData.password != signUpData.passwordConfirmation">Password confirmation is not the same</p>
+    </ion-item>
+
+    <button ion-button full
+    (click)="onSignUpSubmit()"
+    [disabled]="!signUpform.valid">Sign Up</button>
+
+  </form>
+
+</ion-list>
