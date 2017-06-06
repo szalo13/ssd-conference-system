@@ -10,6 +10,7 @@ import { HomePage } from '../pages/home/home';
 import { LoginFormComponent } from '../components/login-form/login-form';
 import { RegisterFormComponent } from '../components/register-form/register-form';
 import { AuthProvider } from '../providers/auth/auth';
+import { Angular2TokenService } from 'angular2-token';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AuthProvider } from '../providers/auth/auth';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthProvider
+    AuthProvider,
+    Angular2TokenService
   ]
 })
 export class AppModule {}

@@ -1,8 +1,8 @@
 import { Component, Inject, Output, EventEmitter } from '@angular/core';
-import { Angular2TokenService, SignInData } from "angular2-token";
 import { Http } from '@angular/http';
 import { environment } from "../../app/environments/environment";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthProvider } from '../../providers/auth/auth';
 
 /**
  * Generated class for the LoginFormComponent component.
@@ -13,7 +13,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'register-form',
   templateUrl: 'register-form.html',
-  providers: [ Angular2TokenService ]
+  providers: [ AuthProvider ]
 })
 export class RegisterFormComponent {
 
@@ -26,7 +26,7 @@ export class RegisterFormComponent {
   }
 
   constructor(
-    private authToken: Angular2TokenService,
+    public authProvider: AuthProvider,
     private http: Http,
     @Inject(FormBuilder) fb: FormBuilder) {
 
@@ -35,12 +35,10 @@ export class RegisterFormComponent {
         password: ['', [Validators.minLength(8), Validators.required]],
         passwordConfirmation: ['', [Validators.minLength(8), Validators.required]]
       });
-
-      this.authToken.init(environment.token_auth_config);
   }
 
   private onSignUpSubmit() {
-    this.authToken.registerAccount(this.signUpData).subscribe(
+    this.authProvider.registerUser(this.signUpData).subscribe(
       res => {
         if(res.status == 200) {
           console.log("logged in");
