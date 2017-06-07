@@ -41,7 +41,6 @@ export class AuthProvider {
      return this.authService.registerAccount(signUpData).map(
          res => {
            this.userSignedIn$.next(true);
-           console.log(res);
            return res
          },
          err => {

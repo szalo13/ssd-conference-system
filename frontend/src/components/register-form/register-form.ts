@@ -24,6 +24,7 @@ export class RegisterFormComponent {
     password: '',
     passwordConfirmation: ''
   }
+  message:String;
 
   constructor(
     public authProvider: AuthProvider,
@@ -32,7 +33,8 @@ export class RegisterFormComponent {
 
       this.signUpform = fb.group({
         email: ['', Validators.email],
-        password: ['', [Validators.minLength(8), Validators.required]],
+        // TODO zmienic dlugosc walidacji
+        password: ['', [Validators.minLength(1), Validators.required]],
         passwordConfirmation: ['', [Validators.minLength(8), Validators.required]]
       });
   }
@@ -41,15 +43,24 @@ export class RegisterFormComponent {
     this.authProvider.registerUser(this.signUpData).subscribe(
       res => {
         if(res.status == 200) {
+          this.message = "Success!";
           console.log("logged in");
           this.onFormResult.emit({signedUp: true, res});
         }
       },
 
       err => {
-        console.error('auth error:', err)
+        let errBody = JSON.parse(err._body).errors.full_messages[0];
+        if (errBody) {
+          this.message = errBody;
+        }
         this.onFormResult.emit({signedUp: true, err});
       }
-  )
+    )
   }
+
+  private displayConfirmationMessage () {
+
+  }
+
 }

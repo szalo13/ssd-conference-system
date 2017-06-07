@@ -2,6 +2,7 @@
 
   <form [formGroup]="signUpform">
 
+
     <ion-item>
       <ion-label fixed>Email</ion-label>
       <ion-input type="text" value=""
@@ -24,7 +25,8 @@
     </ion-item>
 
     <ion-item>
-      <p *ngIf="signUpData.password != signUpData.passwordConfirmation">Password confirmation is not the same</p>
+      <p *ngIf="(signUpData.password != signUpData.passwordConfirmation) && signUpData.passwordConfirmation">Password confirmation is not the same</p>
+      <p *ngIf="message">{{message}}</p>
     </ion-item>
 
     <button ion-button full
