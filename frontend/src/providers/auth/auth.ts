@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Response } from '@angular/http';
 import { Angular2TokenService } from 'angular2-token';
 import { Subject, Observable } from 'rxjs';
+import { environment } from '../../app/environments/environment';
 
 import 'rxjs/add/operator/map';
 
@@ -17,9 +18,10 @@ export class AuthProvider {
   userSignedIn$:Subject<boolean> = new Subject();
 
   constructor(public authService:Angular2TokenService) {
-    // this.authService.validateToken().subscribe(
-    //   res => res.status == 200 ? this.userSignedIn$.next(res.json().success): this.userSignedIn$.next(false)
-    // )
+    this.authService.init(environment.token_auth_config);
+    this.authService.validateToken().subscribe(
+      res => res.status == 200 ? this.userSignedIn$.next(res.json().success): this.userSignedIn$.next(false)
+    )
   }
 
   logOutUser():Observable<Response>{
@@ -39,7 +41,11 @@ export class AuthProvider {
      return this.authService.registerAccount(signUpData).map(
          res => {
            this.userSignedIn$.next(true);
+           console.log(res);
            return res
+         },
+         err => {
+           console.log(err);
          }
      );
    }
@@ -52,6 +58,9 @@ export class AuthProvider {
          res => {
            this.userSignedIn$.next(true);
            return res
+         },
+         err => {
+           console.log(err);
          }
      );
    }
