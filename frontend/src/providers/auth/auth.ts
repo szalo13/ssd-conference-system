@@ -17,16 +17,16 @@ export class AuthProvider {
 
   userSignedIn$:Subject<boolean> = new Subject();
 
-  constructor(public authService:Angular2TokenService) {
-    this.authService.init(environment.token_auth_config);
-    this.authService.validateToken().subscribe(
+  constructor(public tokenService:Angular2TokenService) {
+    this.tokenService.init(environment.token_auth_config);
+    this.tokenService.validateToken().subscribe(
       res => res.status == 200 ? this.userSignedIn$.next(res.json().success): this.userSignedIn$.next(false)
     )
   }
 
   logOutUser():Observable<Response>{
 
-    return this.authService.signOut().map(
+    return this.tokenService.signOut().map(
         res => {
           this.userSignedIn$.next(false);
           return res;
@@ -38,7 +38,7 @@ export class AuthProvider {
     email:string,
     password:string,
     passwordConfirmation:string}):Observable<Response>{
-     return this.authService.registerAccount(signUpData).map(
+     return this.tokenService.registerAccount(signUpData).map(
          res => {
            this.userSignedIn$.next(true);
            return res
@@ -53,7 +53,7 @@ export class AuthProvider {
      email:string,
      password:string}):Observable<Response>{
 
-     return this.authService.signIn(signInData).map(
+     return this.tokenService.signIn(signInData).map(
          res => {
            this.userSignedIn$.next(true);
            return res
