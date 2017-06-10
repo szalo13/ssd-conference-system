@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { LoginComponent } from '../../components/login/login';
-import { RegisterFormComponent } from '../../components/register-form/register-form';
+import { AuthProvider } from '../../providers/auth/auth';
 
 @Component({
   selector: 'page-home',
@@ -9,8 +8,8 @@ import { RegisterFormComponent } from '../../components/register-form/register-f
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
-
+  constructor(public navCtrl: NavController, public authProvider: AuthProvider) {
+    console.log(this.authProvider.userSignedIn$);
   }
 
 }
