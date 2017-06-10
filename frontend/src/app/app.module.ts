@@ -7,8 +7,12 @@ import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { ProfilePage } from '../pages/profile/profile';
+import { ConferencePage } from '../pages/conference/conference';
+
 import { LoginFormComponent } from '../components/login-form/login-form';
 import { RegisterFormComponent } from '../components/register-form/register-form';
+
 import { AuthProvider } from '../providers/auth/auth';
 import { Angular2TokenService } from 'angular2-token';
 import { GuardProvider } from '../providers/guard/guard';
@@ -17,8 +21,11 @@ import { GuardProvider } from '../providers/guard/guard';
   declarations: [
     MyApp,
     HomePage,
+    ProfilePage,
+    ConferencePage,
+
     LoginFormComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +35,9 @@ import { GuardProvider } from '../providers/guard/guard';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    ProfilePage,
+    ConferencePage,
   ],
   providers: [
     StatusBar,
