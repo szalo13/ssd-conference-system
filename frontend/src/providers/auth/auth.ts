@@ -18,6 +18,7 @@ export class AuthProvider {
   userSignedIn$:Subject<boolean> = new Subject();
 
   constructor(public tokenService:Angular2TokenService) {
+    console.log(this.userSignedIn$);
     this.tokenService.init(environment.token_auth_config);
     this.tokenService.validateToken().subscribe(
       res => res.status == 200 ? this.userSignedIn$.next(res.json().success): this.userSignedIn$.next(false)
