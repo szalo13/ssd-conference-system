@@ -11,6 +11,10 @@
         {{p.title}}
       </button>
     </ion-list>
+    <ion-list>
+      <button>{{message}}</button>
+      <button ion-item *ngIf="authProvider.userSignedIn$" (click)="logOutUser()">Log Out</button>
+    </ion-list>
   </ion-content>
 
 </ion-menu>

@@ -4,6 +4,8 @@ import { environment } from "../../app/environments/environment";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
 
+import { Subscription } from 'rxjs/Subscription';
+
 /**
  * Generated class for the LoginFormComponent component.
  *
@@ -24,18 +26,20 @@ export class LoginFormComponent {
     password: ''
   }
 
+  subscription: Subscription;
+
   constructor(
-    private authProvider: AuthProvider,
-    private http: Http,
+    public authProvider: AuthProvider,
     @Inject(FormBuilder) fb: FormBuilder) {
 
       this.form = fb.group({
         email: ['', Validators.email],
         password: ['', [Validators.minLength(5), Validators.required]]
       });
+      this.subscription = this.authProvider.getAuthentication().subscribe(message => (console.log(message)));
   }
 
-  private onSignInSubmit() {
+  onSignInSubmit() {
     this.authProvider.logInUser(this.signInData).subscribe(
       res => {
         if(res.status == 200) {

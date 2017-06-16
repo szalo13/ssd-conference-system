@@ -9,4 +9,12 @@
 
 <ion-content padding>
   Home Page
+  <register-form *ngIf="authProvider.userSignedIn$"></register-form>
+  <login-form *ngIf="authProvider.userSignedIn$"></login-form>
+
+  <ion-item>
+    <button ion-item (click)="sendMessage()">Click me</button>
+    <button ion-item (click)="sendFalse()">Send false</button>
+    <button ion-item (click)="sendTrue()">Send true</button>
+  </ion-item>
 </ion-content>
