@@ -14,23 +14,10 @@ export class HomePage {
 
   i = 0;
   subscription = new Subscription;
+  isLogedIn: Boolean;
 
   constructor(public navCtrl: NavController, public authProvider: AuthProvider) {
-    console.log(this.authProvider.userSignedIn$);
-
-    this.subscription = this.authProvider.getAuthentication().subscribe( message => console.log(message));
-  }
-
-  sendMessage() {
-    this.i++;
-    this.authProvider.sendMessage(String(this.i));
-  }
-
-  sendFalse() {
-    this.authProvider.sendFalse();
-  }
-  
-  sendTrue() {
-    this.authProvider.sendTrue();
+    this.isLogedIn = this.authProvider.userSignedIn();
+    this.subscription = this.authProvider.getAuthentication().subscribe( message => this.isLogedIn = message );
   }
 }

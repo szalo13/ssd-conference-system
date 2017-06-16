@@ -26,8 +26,6 @@ export class LoginFormComponent {
     password: ''
   }
 
-  subscription: Subscription;
-
   constructor(
     public authProvider: AuthProvider,
     @Inject(FormBuilder) fb: FormBuilder) {
@@ -36,21 +34,19 @@ export class LoginFormComponent {
         email: ['', Validators.email],
         password: ['', [Validators.minLength(5), Validators.required]]
       });
-      this.subscription = this.authProvider.getAuthentication().subscribe(message => (console.log(message)));
   }
 
   onSignInSubmit() {
     this.authProvider.logInUser(this.signInData).subscribe(
       res => {
         if(res.status == 200) {
-          console.log("logged in");
-          this.onFormResult.emit({signedIn: true, res});
+          this.authProvider.userSignedIn$.next(true);
+          console.log(res);
         }
       },
 
       err => {
         console.error('auth error:', err);
-        this.onFormResult.emit({signedIn: false, err});
       }
   )
   }

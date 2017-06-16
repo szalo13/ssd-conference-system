@@ -16,6 +16,7 @@ import { RegisterFormComponent } from '../components/register-form/register-form
 import { AuthProvider } from '../providers/auth/auth';
 import { Angular2TokenService } from 'angular2-token';
 import { GuardProvider } from '../providers/guard/guard';
+import { MenuTabComponent } from '../components/menu-tab/menu-tab';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { GuardProvider } from '../providers/guard/guard';
 
     LoginFormComponent,
     RegisterFormComponent,
+    MenuTabComponent,
   ],
   imports: [
     BrowserModule,

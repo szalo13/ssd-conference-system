@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Response } from '@angular/http';
 import { Angular2TokenService } from 'angular2-token';
-import { Subject, Observable } from 'rxjs';
+import { Subject, Observable, BehaviorSubject } from 'rxjs';
 import { environment } from '../../app/environments/environment';
 
 import 'rxjs/add/operator/map';
@@ -16,20 +16,20 @@ import 'rxjs/add/operator/map';
 export class AuthProvider {
 
   userSignedIn$:Subject<boolean> = new Subject();
-  userSignedIn:Boolean = false;
   subject = new Subject<any>();
 
   constructor(public tokenService:Angular2TokenService) {
-    console.log(this.userSignedIn$);
     this.tokenService.init(environment.token_auth_config);
     this.tokenService.validateToken().subscribe(
       res => res.status == 200 ? this.userSignedIn$.next(true) : this.userSignedIn$.next(false)
     )
+    console.log('user is already signed or not: ');
+    console.log(this.tokenService.userSignedIn());
   }
 
   logOutUser():Observable<Response>{
-    console.log('logOut');
-      this.userSignedIn$.next(false);
+    console.log('logOut -> false');
+    this.userSignedIn$.next(false);
     return this.tokenService.signOut().map(
         res => {
           return res;
@@ -44,13 +44,14 @@ export class AuthProvider {
     email:string,
     password:string,
     passwordConfirmation:string}):Observable<Response>{
-      console.log('register');
      return this.tokenService.registerAccount(signUpData).map(
          res => {
+           console.log('register user -> true');
            this.userSignedIn$.next(true);
            return res
          },
          err => {
+           console.log('register user -> true');
            this.userSignedIn$.next(false);
          }
      );
@@ -61,33 +62,23 @@ export class AuthProvider {
      password:string}):Observable<Response>{
      return this.tokenService.signIn(signInData).map(
          res => {
+           console.log(res);
            this.userSignedIn$.next(true);
-           return res
+           return res;
          },
          err => {
+           console.log('logIn user -> false');
+           console.log(err);
            this.userSignedIn$.next(false);
          }
      );
    }
 
-   sendFalse() {
-     this.userSignedIn$.next(false);
+   userSignedIn() {
+     return this.tokenService.userSignedIn();
    }
 
-   sendTrue() {
-     this.userSignedIn$.next(true);
-   }
-
-   sendMessage(message: string) {
-         this.subject.next({ text: message });
-     }
-
-     getAuthentication(): Observable<any> {
-       console.log('getAuthentication');
+   getAuthentication(): Observable<any> {
            return this.userSignedIn$.asObservable();
-    }
-
-   getMessage(): Observable<any> {
-        return this.subject.asObservable();
     }
 }
