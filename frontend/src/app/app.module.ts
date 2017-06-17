@@ -17,6 +17,7 @@ import { AuthProvider } from '../providers/auth/auth';
 import { Angular2TokenService } from 'angular2-token';
 import { GuardProvider } from '../providers/guard/guard';
 import { MenuTabComponent } from '../components/menu-tab/menu-tab';
+import { ConferenceProvider } from '../providers/conference/conference';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { MenuTabComponent } from '../components/menu-tab/menu-tab';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     Angular2TokenService,
-    GuardProvider
+    GuardProvider,
+    ConferenceProvider
   ]
 })
 export class AppModule {}
