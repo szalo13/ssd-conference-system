@@ -9,16 +9,27 @@
 
 <ion-content padding>
   Home Page
+
+  <ion-grid *ngIf="isLogedIn">
+    <ion-col col-4 offset-4>
+      <ion-item>Software System Development</ion-item>
+      <ion-item>Conference System</ion-item>
+      <ion-list class="padding">
+        <ion-item>Kamil Szalek</ion-item>
+        <ion-item>Przemysław Skowronek</ion-item>
+        <ion-item>Messilia Tazit</ion-item>
+      </ion-list>
+    </ion-col>
+  </ion-grid>
+
   <ion-grid>
     <ion-row>
-      <ion-col></ion-col>
-      <ion-col>
+      <ion-col offset-2 col-4>
         <register-form *ngIf="!isLogedIn"></register-form>
       </ion-col>
-      <ion-col>
+      <ion-col col-4>
         <login-form *ngIf="!isLogedIn"></login-form>
       </ion-col>
-      <ion-col></ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>

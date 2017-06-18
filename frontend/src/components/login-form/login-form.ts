@@ -1,10 +1,12 @@
 import { Component, Inject, Output, EventEmitter } from '@angular/core';
+import { NavController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { environment } from "../../app/environments/environment";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
-
 import { Subscription } from 'rxjs/Subscription';
+
+import { ProfilePage } from '../../pages/profile/profile';
 
 /**
  * Generated class for the LoginFormComponent component.
@@ -28,6 +30,7 @@ export class LoginFormComponent {
 
   constructor(
     public authProvider: AuthProvider,
+    public navCtrl: NavController,
     @Inject(FormBuilder) fb: FormBuilder) {
 
       this.form = fb.group({
@@ -41,7 +44,7 @@ export class LoginFormComponent {
       res => {
         if(res.status == 200) {
           this.authProvider.userSignedIn$.next(true);
-          console.log(res);
+          this.navCtrl.setRoot(ProfilePage);
         }
       },
 

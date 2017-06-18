@@ -18,12 +18,15 @@ import { HomePage } from '../home/home';
 export class ProfilePage {
 
   isLogedIn: boolean = false;
+  user: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public authProvider: AuthProvider) {
 
 
     if (this.authProvider.getUserInfo()) {
       this.isLogedIn = true;
+      this.user = this.authProvider.getUserInfo();
+      console.log(this.user);
     } else {
       this.isLogedIn = false;
     }

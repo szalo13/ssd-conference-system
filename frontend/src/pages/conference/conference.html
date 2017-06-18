@@ -22,9 +22,23 @@
 
   <conference-add-form *ngIf="createNewMode"></conference-add-form>
 
+  <ion-grid>
+    <ion-col col-8 offset-2>
+      <ion-row>
+        <ion-col>Name</ion-col>
+        <ion-col>Description</ion-col>
+        <ion-col>Start time</ion-col>
+        <ion-col>End time</ion-col>
+        <ion-col>Is private</ion-col>
+      </ion-row>
+    </ion-col>
+  </ion-grid>
+
   <ion-grid *ngFor="let conference of conferences">
-    <conference-table-row
-    *ngIf="isLogedIn || ( !isLogedIn && !conference.isPrivate )"
-    [conference]="conference"></conference-table-row>
+    <ion-col offset-2 col-8>
+      <conference-table-row
+      *ngIf="isLogedIn || ( !isLogedIn && !conference.isPrivate )"
+      [conference]="conference"></conference-table-row>
+    </ion-col>
   </ion-grid>
 </ion-content>

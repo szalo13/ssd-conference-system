@@ -1,6 +1,6 @@
 <ion-menu [content]="content">
   <ion-header>
-    <ion-toolbar>
+    <ion-toolbar (click)="checkAuth()">
       <ion-title>Menu</ion-title>
     </ion-toolbar>
   </ion-header>
@@ -10,9 +10,6 @@
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         {{p.title}}
       </button>
-    </ion-list>
-    <ion-list>
-      <button *ngIf="authorized == 'authorized'" ion-item (click)="logOutUser()">Log Out</button>
     </ion-list>
   </ion-content>
 

@@ -19,5 +19,17 @@
 <ion-content padding>
   Profile Page
 
-  <button *ngIf="isLogedIn" ion-button full (click)="logOutUser()">Log Out</button>
+  <ion-grid *ngIf="user">
+    <ion-col offset-4 col-4>
+      <ion-list>
+        <!-- <ion-item>
+          <ion-img height="100px" width="100px"></ion-img>
+        </ion-item> -->
+        <ion-item>{{user.email}}</ion-item>
+        <ion-item>
+          <button *ngIf="isLogedIn" ion-button full (click)="logOutUser()">Log Out</button>
+        </ion-item>
+      </ion-list>
+    </ion-col>
+  </ion-grid>
 </ion-content>

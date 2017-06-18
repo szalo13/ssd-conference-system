@@ -1,0 +1,104 @@
+{
+  "_from": "angular2-token@^0.2.0-beta.11",
+  "_id": "angular2-token@0.2.0-beta.11",
+  "_inBundle": false,
+  "_integrity": "sha1-Fxs5I7b9gpmUW70uNH/wHjlixMU=",
+  "_location": "/angular2-token",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "angular2-token@^0.2.0-beta.11",
+    "name": "angular2-token",
+    "escapedName": "angular2-token",
+    "rawSpec": "^0.2.0-beta.11",
+    "saveSpec": null,
+    "fetchSpec": "^0.2.0-beta.11"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/angular2-token/-/angular2-token-0.2.0-beta.11.tgz",
+  "_shasum": "171b3923b6fd8299945bbd2e347ff01e3962c4c5",
+  "_spec": "angular2-token@^0.2.0-beta.11",
+  "_where": "/home/kamil/Dokumenty/ssd-conference-system/frontend",
+  "author": {
+    "name": "Jan-Philipp Riethmacher",
+    "email": "neroniaky@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/neroniaky/angular2-token/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Angular2 service for token based authentication",
+  "devDependencies": {
+    "@angular/animations": "4.0.0",
+    "@angular/common": "4.0.0",
+    "@angular/compiler": "4.0.0",
+    "@angular/compiler-cli": "4.0.0",
+    "@angular/core": "4.0.0",
+    "@angular/forms": "4.0.0",
+    "@angular/http": "4.0.0",
+    "@angular/platform-browser": "4.0.0",
+    "@angular/platform-browser-dynamic": "4.0.0",
+    "@angular/platform-server": "4.0.0",
+    "@angular/router": "4.0.0",
+    "@types/hammerjs": "2.0.34",
+    "@types/jasmine": "2.5.46",
+    "@types/node": "7.0.10",
+    "@types/selenium-webdriver": "3.0.0",
+    "@types/source-map": "0.5.0",
+    "@types/webpack": "2.2.12",
+    "awesome-typescript-loader": "3.1.2",
+    "core-js": "2.4.1",
+    "http-server": "0.9.0",
+    "ie-shim": "0.1.0",
+    "istanbul-instrumenter-loader": "2.0.0",
+    "jasmine-core": "2.5.2",
+    "karma": "1.5.0",
+    "karma-chrome-launcher": "2.0.0",
+    "karma-coverage": "1.1.1",
+    "karma-jasmine": "1.1.0",
+    "karma-mocha-reporter": "2.2.3",
+    "karma-remap-coverage": "0.1.4",
+    "karma-sourcemap-loader": "0.3.7",
+    "karma-webpack": "2.0.3",
+    "remap-istanbul": "0.9.1",
+    "rimraf": "2.6.1",
+    "rxjs": "5.2.0",
+    "source-map-loader": "0.2.0",
+    "ts-helpers": "1.1.2",
+    "ts-node": "3.0.2",
+    "typescript": "2.2.1",
+    "webpack": "2.3.1",
+    "zone.js": "0.8.5"
+  },
+  "homepage": "https://github.com/neroniaky/angular2-token#readme",
+  "keywords": [
+    "angular2",
+    "devise token auth",
+    "token authentication"
+  ],
+  "license": "MIT",
+  "main": "./angular2-token.js",
+  "name": "angular2-token",
+  "peerDependencies": {
+    "@angular/common": "^4.0.0",
+    "@angular/core": "^4.0.0",
+    "@angular/forms": "^4.0.0",
+    "@angular/http": "^4.0.0",
+    "@angular/router": "^4.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neroniaky/angular2-token.git"
+  },
+  "scripts": {
+    "build": "rimraf lib && ngc -p src",
+    "prepublish": "npm run build",
+    "test": "karma start"
+  },
+  "typings": "./angular2-token.d.ts",
+  "version": "0.2.0-beta.11"
+}

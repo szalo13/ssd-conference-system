@@ -27,8 +27,8 @@ export class MenuTabComponent {
   authorized = "";
 
   constructor(public authProvider: AuthProvider) {
-    this.setAuth(this.authProvider.userSignedIn());
-    this.authenticateSubscription = this.authProvider.getAuthentication().subscribe( message => this.setAuth(message));
+    this.checkAuth();
+    this.authenticateSubscription = this.authProvider.getAuthentication().subscribe( message => this.checkAuth());
 
     // used for an example of ngFor and navigation
     this.pages = [
@@ -42,12 +42,13 @@ export class MenuTabComponent {
     this.nav.setRoot(page.component);
   }
 
-  setAuth(message) {
-    console.log('seth Auth');
-    if (message) {
+  checkAuth() {
+    if (this.authProvider.getUserInfo()) {
       this.authorized = "authorized";
+      this.isLogedIn = true;
     } else {
-        this.authorized = "";
+      this.authorized = "";
+      this.isLogedIn = false;
     }
   }
 
