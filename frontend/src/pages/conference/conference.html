@@ -23,6 +23,8 @@
   <conference-add-form *ngIf="createNewMode"></conference-add-form>
 
   <ion-grid *ngFor="let conference of conferences">
-    <conference-table-row [conference]="conference"></conference-table-row>
+    <conference-table-row
+    *ngIf="isLogedIn || ( !isLogedIn && !conference.isPrivate )"
+    [conference]="conference"></conference-table-row>
   </ion-grid>
 </ion-content>

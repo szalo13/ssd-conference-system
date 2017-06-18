@@ -9,15 +9,16 @@
 
 <ion-content padding>
   Home Page
-  <conference-add-form></conference-add-form>
-  <register-form *ngIf="isLogedIn == true"></register-form>
-  <login-form *ngIf="isLogedIn == false"></login-form>
-
-  <ion-item>
-    <button ion-item (click)="sendMessage()">Click me</button>
-    <button ion-item (click)="sendFalse()">Send false</button>
-    <button ion-item (click)="sendTrue()">Send true</button>
-  </ion-item>
-
-  <register-form *ngIf="isLogedIn == false"></register-form>
+  <ion-grid>
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col>
+        <register-form *ngIf="!isLogedIn"></register-form>
+      </ion-col>
+      <ion-col>
+        <login-form *ngIf="!isLogedIn"></login-form>
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

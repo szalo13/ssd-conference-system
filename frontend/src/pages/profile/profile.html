@@ -18,4 +18,6 @@
 
 <ion-content padding>
   Profile Page
+
+  <button *ngIf="isLogedIn" ion-button full (click)="logOutUser()">Log Out</button>
 </ion-content>

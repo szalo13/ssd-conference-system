@@ -20,11 +20,18 @@ import { ConferenceTableRowComponent } from '../../components/conference-table-r
 export class ConferencePage {
 
   conferences: any;
-  createNewMode: Boolean;
+  createNewMode: Boolean
+  isLogedIn: Boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public authProvider: AuthProvider, public conferenceProvider: ConferenceProvider) {
 
     this.createNewMode = false;
+
+    if (this.authProvider.getUserInfo()) {
+      this.isLogedIn = true;
+    } else {
+      this.isLogedIn = false;
+    }
 
     conferenceProvider.getAllConferences().subscribe(
       res => {

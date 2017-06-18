@@ -18,11 +18,12 @@ import { AuthProvider } from '../../providers/auth/auth';
 export class RegisterFormComponent {
 
   @Output() onFormResult = new EventEmitter<any>();
-  signUpform: FormGroup;
+  signUpForm: FormGroup;
   signUpData = {
     email: '',
     password: '',
-    passwordConfirmation: ''
+    passwordConfirmation: '',
+    userType: '',
   }
   message:String;
 
@@ -31,16 +32,17 @@ export class RegisterFormComponent {
     private http: Http,
     @Inject(FormBuilder) fb: FormBuilder) {
 
-      this.signUpform = fb.group({
+      this.signUpForm = fb.group({
         email: ['', Validators.email],
         // TODO zmienic dlugosc walidacji
         password: ['', [Validators.minLength(1), Validators.required]],
-        passwordConfirmation: ['', [Validators.minLength(8), Validators.required]]
+        passwordConfirmation: ['', [Validators.minLength(8), Validators.required]],
+        userType: ['', [Validators.required]]
       });
   }
 
-  private onSignUpSubmit() {
-    this.authProvider.registerUser(this.signUpData).subscribe(
+  onSignUpSubmit() {
+    this.authProvider.registerUser(this.signUpForm.value).subscribe(
       res => {
         if(res.status == 200) {
           this.message = "Success!";
