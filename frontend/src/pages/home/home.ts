@@ -4,6 +4,8 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { RegisterFormComponent } from '../../compopnents/register-form/register-form';
 import { LoginFormComponent } from '../../compopnents/login-form/login-form';
 
+import { ConferenceAddFormComponent } from '../../components/conference-add-form/conference-add-form';
+
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({

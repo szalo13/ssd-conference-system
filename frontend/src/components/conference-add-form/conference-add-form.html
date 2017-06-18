@@ -1,0 +1,50 @@
+<form [formGroup]="conferenceForm">
+
+  <ion-grid>
+    <ion-row>
+
+          <ion-col>
+            <ion-item>
+              <ion-label fixed>Name</ion-label>
+              <ion-input type="text"
+              formControlName="name"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Is conference private?</ion-label>
+              <ion-checkbox formControlName="isPrivate"></ion-checkbox>
+            </ion-item>
+          </ion-col>
+
+          <ion-col>
+            <ion-item>
+              <ion-label fixed>Description</ion-label>
+              <ion-textarea type="text"
+              formControlName="description"
+              rows="5"></ion-textarea>
+            </ion-item>
+          </ion-col>
+
+          <ion-col>
+            <ion-item>
+              <ion-label>Start Date</ion-label>
+              <ion-datetime displayFormat="MM/DD/YYYY HH:mm"
+              [(ngModel)]="startTime"
+              formControlName="startTime"></ion-datetime>
+            </ion-item>
+            <ion-item>
+              <ion-label>End Date</ion-label>
+              <ion-datetime displayFormat="MM/DD/YYYY HH:mm"
+              formControlName="endTime"></ion-datetime>
+            </ion-item>
+          </ion-col>
+
+          <ion-col>
+            <button ion-button full
+            (click)="addNewConference()"
+            [disabled]="!conferenceForm.valid">Sign Up</button>
+          </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+</form>

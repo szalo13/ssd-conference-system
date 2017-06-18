@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { ConferenceProvider } from '../../providers/conference/conference';
+import { ConferenceAddFormComponent } from '../../components/conference-add-form/conference-add-form';
+import { ConferenceTableRowComponent } from '../../components/conference-table-row/conference-table-row';
 
 /**
  * Generated class for the ConferencePage page.
@@ -26,6 +28,7 @@ export class ConferencePage {
 
     conferenceProvider.getAllConferences().subscribe(
       res => {
+        console.log(res);
         this.conferences = JSON.parse(res.text());
       }, err => {
         console.log(err);

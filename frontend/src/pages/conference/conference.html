@@ -17,16 +17,12 @@
 
 
 <ion-content padding>
+
   <ion-item (click)="toggleCreateMode()">Add new</ion-item>
-  <ion-item *ngIf="createNewMode">CREATE NEW MODE</ion-item>
-  <ion-list *ngFor="let conference of conferences">
-    <tbody>
-      <tr>
-        <td>{{conference.name}}</td>
-        <td>{{conference.description}}</td>
-        <td>{{conference.startTime}}</td>
-        <td>{{conference.endTime}}</td>
-      </tr>
-    </tbody>
-  </ion-list>
+
+  <conference-add-form *ngIf="createNewMode"></conference-add-form>
+
+  <ion-grid *ngFor="let conference of conferences">
+    <conference-table-row [conference]="conference"></conference-table-row>
+  </ion-grid>
 </ion-content>

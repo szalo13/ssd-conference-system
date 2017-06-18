@@ -18,6 +18,8 @@ import { Angular2TokenService } from 'angular2-token';
 import { GuardProvider } from '../providers/guard/guard';
 import { MenuTabComponent } from '../components/menu-tab/menu-tab';
 import { ConferenceProvider } from '../providers/conference/conference';
+import { ConferenceAddFormComponent } from '../components/conference-add-form/conference-add-form';
+import { ConferenceTableRowComponent } from '../components/conference-table-row/conference-table-row';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { ConferenceProvider } from '../providers/conference/conference';
     LoginFormComponent,
     RegisterFormComponent,
     MenuTabComponent,
+    ConferenceAddFormComponent,
+    ConferenceTableRowComponent,
   ],
   imports: [
     BrowserModule,
